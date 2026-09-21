@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RapidAssist AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <h1>RapidAssist AI</h1>
+
+        <p class="subtitle">
+            Real-time voice field assistance powered by Moss
+        </p>
+
+        <div class="status" id="status">
+            Ready
+        </div>
+
+        <button id="micButton">
+            🎙️ Start Voice Assistance
+        </button>
+
+        <div class="panel">
+            <h3>You said</h3>
+            <p id="transcript">
+                Your voice query will appear here...
+            </p>
+        </div>
+
+        <div class="panel">
+            <h3>RapidAssist Response</h3>
+            <p id="response">
+                Waiting for your request...
+            </p>
+        </div>
+
+        <div class="metrics">
+            <div>
+                <span>Moss Retrieval</span>
+                <strong id="retrievalLatency">-- ms</strong>
+            </div>
+
+            <div>
+                <span>Total Response</span>
+                <strong id="totalLatency">-- ms</strong>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
