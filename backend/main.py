@@ -1,3 +1,5 @@
+from retrieval import retrieve_context
+from agent import generate_response
 from fastapi import FastAPI
 from pydantic import BaseModel
 from time import perf_counter
@@ -19,7 +21,7 @@ def root():
         "project": "RapidAssist AI",
         "status": "running",
         "retrieval": "Moss"
-    }
+  }
 
 
 @app.post("/assist")
@@ -31,25 +33,10 @@ async def assist(request: AssistanceRequest):
     documents = retrieval["documents"]
     retrieval_latency = retrieval["retrieval_latency_ms"]
 
-    if documents:
-        context = "\n\n".join(
-            [
-                f"Source {i + 1}:\n{doc['text']}"
-                for i, doc in enumerate(documents)
-            ]
-        )
-
-        answer = (
-            "I found relevant operational guidance. "
-            "Please follow the applicable site safety procedure.\n\n"
-            + context
-        )
-    else:
-        context = "No relevant operational guidance found."
-
-        answer = (
-            "I could not find reliable guidance for this situation. "
-            "Please refer to the equipment manual or contact trained personnel."
+     answer = generate_response(
+    request.query,
+    documents
+)
         )
 
     total_latency = round(
