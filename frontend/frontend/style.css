@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080b12;
+    color: white;
+    min-height: 100vh;
+}
+
+.app {
+    width: min(900px, 92%);
+    margin: auto;
+    padding: 50px 0;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #333b4d;
+    border-radius: 20px;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+header h1 {
+    font-size: clamp(42px, 8vw, 76px);
+    line-height: 0.95;
+    margin-top: 25px;
+}
+
+header h1 span {
+    opacity: 0.55;
+}
+
+header p {
+    margin-top: 20px;
+    color: #9ba4b5;
+    max-width: 600px;
+    font-size: 18px;
+}
+
+.assistant-card {
+    margin-top: 45px;
+    padding: 30px;
+    background: #111621;
+    border: 1px solid #252d3c;
+    border-radius: 24px;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #aeb7c8;
+    margin-bottom: 25px;
+}
+
+#statusDot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #35d07f;
+}
+
+#micButton {
+    width: 100%;
+    padding: 20px;
+    border: 0;
+    border-radius: 14px;
+    background: white;
+    color: #080b12;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#micButton:hover {
+    opacity: 0.9;
+}
+
+.panel {
+    margin-top: 20px;
+    padding: 20px;
+    background: #0b0f17;
+    border: 1px solid #252d3c;
+    border-radius: 15px;
+}
+
+.panel label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: #7f8a9d;
+}
+
+.panel p {
+    margin-top: 10px;
+    line-height: 1.6;
+    color: #d9deea;
+}
+
+.metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.metrics div {
+    padding: 18px;
+    background: #0b0f17;
+    border-radius: 14px;
+}
+
+.metrics small {
+    display: block;
+    color: #7f8a9d;
+    font-size: 10px;
+}
+
+.metrics strong {
+    display: block;
+    margin-top: 8px;
+    font-size: 20px;
+}
+
+footer {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    color: #8e98aa;
+    font-size: 13px;
+}
+
+@media (max-width: 600px) {
+    .app {
+        padding: 30px 0;
+    }
+
+    .assistant-card {
+        padding: 20px;
+    }
+
+    .metrics {
+        grid-template-columns: 1fr;
+    }
+}
