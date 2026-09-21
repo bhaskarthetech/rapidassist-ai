@@ -1,5 +1,6 @@
 from retrieval import retrieve_context
 from agent import generate_response
+from safety import validate_response
 from fastapi import FastAPI
 from pydantic import BaseModel
 from time import perf_counter
@@ -36,6 +37,12 @@ async def assist(request: AssistanceRequest):
      answer = generate_response(
     request.query,
     documents
+)
+
+answer = validate_response(
+    request.query,
+    answer
+)
 )
         )
 
