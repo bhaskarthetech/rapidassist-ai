@@ -34,7 +34,8 @@ if (SpeechRecognition) {
         try {
 
             const result = await fetch(
-                "http://localhost:8000/assist",
+                "/assist",
+                
                 {
                     method: "POST",
 
