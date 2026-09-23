@@ -61,28 +61,49 @@ def root():
 @app.get("/health")
 @app.get("/setup-index")
 async def setup_index():
-    project_id = os.getenv("MOSS_PROJECT_ID")
-    project_key = os.getenv("MOSS_PROJECT_KEY")
-    index_name = os.getenv(
-        "MOSS_INDEX_NAME",
-        "rapidassist-knowledge"
-    )
+    try:
+        project_id = os.getenv("MOSS_PROJECT_ID")
+        project_key = os.getenv("MOSS_PROJECT_KEY")
+        index_name = os.getenv(
+            "MOSS_INDEX_NAME",
+            "rapidassist-knowledge"
+        )
 
-    client = MossClient(
-        project_id,
-        project_key
-    )
+        if not project_id:
+            return {
+                "status": "error",
+                "message": "MOSS_PROJECT_ID is missing"
+            }
 
-    await client.create_index(
-        index_name,
-        KNOWLEDGE
-    )
+        if not project_key:
+            return {
+                "status": "error",
+                "message": "MOSS_PROJECT_KEY is missing"
+            }
 
-    return {
-        "status": "success",
-        "message": "RapidAssist Moss index created",
-        "index": index_name,
-        "documents": len(KNOWLEDGE)
+        client = MossClient(
+            project_id,
+            project_key
+        )
+
+        await client.create_index(
+            index_name,
+            KNOWLEDGE
+        )
+
+        return {
+            "status": "success",
+            "message": "RapidAssist Moss index created",
+            "index": index_name,
+            "documents": len(KNOWLEDGE)
+        }
+
+    except Exception as e:
+        return {
+            "status": "error",
+            "error_type": type(e).__name__,
+            "message": str(e)
+        }
     }
 def health():
     return {
