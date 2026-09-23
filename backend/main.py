@@ -1,3 +1,7 @@
+import os
+from moss import MossClient
+from setup_moss import KNOWLEDGE
+
 from pathlib import Path
 from time import perf_counter
 
@@ -55,6 +59,31 @@ def root():
 
 
 @app.get("/health")
+@app.get("/setup-index")
+async def setup_index():
+    project_id = os.getenv("MOSS_PROJECT_ID")
+    project_key = os.getenv("MOSS_PROJECT_KEY")
+    index_name = os.getenv(
+        "MOSS_INDEX_NAME",
+        "rapidassist-knowledge"
+    )
+
+    client = MossClient(
+        project_id,
+        project_key
+    )
+
+    await client.create_index(
+        index_name,
+        KNOWLEDGE
+    )
+
+    return {
+        "status": "success",
+        "message": "RapidAssist Moss index created",
+        "index": index_name,
+        "documents": len(KNOWLEDGE)
+    }
 def health():
     return {
         "project": "RapidAssist AI",
